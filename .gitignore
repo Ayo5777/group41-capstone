@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+env/
+venv/
+*.log
+*.pcap
+*.zip
+*.tar
+*.tar.gz
+.ipynb_checkpoints/
+results/*
