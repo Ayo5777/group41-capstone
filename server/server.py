@@ -75,13 +75,13 @@ def main():
         fraction_evaluate = 1.0,
 
         # how many clients must be connected before a round starts
-        min_available_clients = 1,
+        min_available_clients = 15,
 
         # how many clients successfully train and send updates each round
-        min_fit_clients = 1,
+        min_fit_clients = 15,
 
         # how many clients successfully evaluate the model
-        min_evaluate_clients = 1,
+        min_evaluate_clients = 15,
 
         on_fit_config_fn = fit_config,
         evaluate_metrics_aggregation_fn = weighted_average
