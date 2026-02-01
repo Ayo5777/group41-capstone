@@ -45,6 +45,7 @@ def weighted_average(metrics):
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--test_name", default = "test_unspecified")
+    parser.add_argument("--num_clients", type=int, default=1)
     parser.add_argument("--rounds", type=int, default=3)
     return parser.parse_args()
 def fit_config(server_round):
@@ -75,13 +76,13 @@ def main():
         fraction_evaluate = 1.0,
 
         # how many clients must be connected before a round starts
-        min_available_clients = 15,
+        min_available_clients = args.num_clients,
 
         # how many clients successfully train and send updates each round
-        min_fit_clients = 15,
+        min_fit_clients = args.num_clients,
 
         # how many clients successfully evaluate the model
-        min_evaluate_clients = 15,
+        min_evaluate_clients = args.num_clients,
 
         on_fit_config_fn = fit_config,
         evaluate_metrics_aggregation_fn = weighted_average
