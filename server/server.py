@@ -12,16 +12,13 @@ class LoggingFedAvg(fl.server.strategy.FedAvg):
         super().__init__(*args, **kwargs)
         self.log_path = log_path
 
-        # store per-round fit stats so aggregate_evaluate can write one row/round
         self._last_fit_clients = 0
         self._last_fit_failures = 0
 
     def aggregate_fit(self, server_round, results, failures):
-        # record fit participation/failures
         self._last_fit_clients = len(results)
         self._last_fit_failures = len(failures)
 
-        # continue with normal FedAvg aggregation
         return super().aggregate_fit(server_round, results, failures)
 
     def aggregate_evaluate(self, server_round, results, failures):
@@ -75,15 +72,12 @@ def parse_args():
     parser.add_argument("--test_name", default="test_unspecified")
     parser.add_argument("--num_clients", type=int, default=1)
     parser.add_argument("--rounds", type=int, default=3)
-
-    # hard deadline for each round (seconds). when exceeded, stragglers count as failures.
     parser.add_argument("--round_timeout", type=float, default=60.0)
 
     return parser.parse_args()
 
 
 def fit_config(server_round):
-    # start timing at the beginning of the fit phase
     global ROUND_START_TIME
     ROUND_START_TIME = time.time()
     return {"local_epochs": 1, "lr": 0.01}
@@ -118,12 +112,9 @@ def main():
         fraction_fit=1.0,
         fraction_evaluate=1.0,
 
-        # how many clients must be connected before a round starts
-        min_available_clients=args.num_clients,
-
-        # how many clients are *requested* for fit/eval (with timeout, some may fail)
-        min_fit_clients=8,
-        min_evaluate_clients=5,
+        min_available_clients=int(0.8 * args.num_clients),
+        min_fit_clients = int(0.8 * args.num_clients),
+        min_evaluate_clients = int(0.8 * args.num_clients),
 
         on_fit_config_fn=fit_config,
         evaluate_metrics_aggregation_fn=weighted_average,
@@ -133,7 +124,7 @@ def main():
         server_address=server_address,
         config=fl.server.ServerConfig(
             num_rounds=args.rounds,
-            round_timeout=args.round_timeout,  # <-- deadline per round
+            round_timeout=args.round_timeout,
         ),
         strategy=strategy,
     )
