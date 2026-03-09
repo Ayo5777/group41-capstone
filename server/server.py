@@ -80,7 +80,7 @@ def parse_args():
 def fit_config(server_round):
     global ROUND_START_TIME
     ROUND_START_TIME = time.time()
-    return {"local_epochs": 1, "lr": 0.01}
+    return {"local_epochs": 2, "lr": 0.01}
 
 
 def main():
