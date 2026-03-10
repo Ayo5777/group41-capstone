@@ -201,7 +201,6 @@ def main():
         fraction_fit=1.0,
         fraction_evaluate=1.0,
         min_available_clients=int(0.8 * args.num_clients),
-        min_fit_clients=int(0.8 * args.num_clients),
         min_evaluate_clients=int(0.8 * args.num_clients),
         on_fit_config_fn=fit_config,
         evaluate_metrics_aggregation_fn=weighted_average,

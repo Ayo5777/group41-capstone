@@ -16,7 +16,7 @@ import streamlit as st
 # CONFIGURE THESE PATHS FOR YOUR PROJECT
 # =========================================================
 APP_DIR = Path(__file__).resolve().parent
-SERVER_SCRIPT = APP_DIR / "server.py"
+SERVER_SCRIPT = APP_DIR / "server" / "server.py"
 CLIENT_SCRIPT = APP_DIR / "fl_clients" / "new_client.py"
 
 METRICS_DIR = APP_DIR / "metrics"
