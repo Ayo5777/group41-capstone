@@ -45,13 +45,15 @@ def weighted_average(metrics):
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--test_name", default = "test_unspecified")
-    parser.add_argument("--num_clients", type=int, default=1)
+    parser.add_argument("--num_clients", type=int, default=50)
+    parser.add_argument("--host", default="0.0.0.0")
+    parser.add_argument("--port", type=int, default=8080)
     parser.add_argument("--rounds", type=int, default=3)
     return parser.parse_args()
 def fit_config(server_round):
     global ROUND_START_TIME
     ROUND_START_TIME = time.time()
-    return {"local_epochs": 1, "lr": 0.01}
+    return {"local_epochs": 3, "lr": 0.01}
 
 
 
@@ -60,7 +62,7 @@ def main():
 
     time_stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     log_path = f"{args.test_name}_{time_stamp}.csv"
-    server_address = "0.0.0.0:8080"
+    server_address = f"{args.host}:{args.port}"
 
     print("Server Address: ", server_address)
     print("Logging Data To: ", log_path)
