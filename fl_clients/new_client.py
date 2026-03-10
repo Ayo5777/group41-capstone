@@ -90,11 +90,7 @@ def train_one_round(
 
 
 @torch.no_grad()
-def evaluate_model(
-    model: nn.Module,
-    testloader: DataLoader,
-    device: torch.device
-) -> Tuple[float, float]:
+def evaluate_model(model: nn.Module, testloader: DataLoader, device: torch.device) -> Tuple[float, float]:
     model.eval()
     criterion = nn.CrossEntropyLoss()
 
@@ -118,15 +114,7 @@ def evaluate_model(
 
 
 class FlowerClient(fl.client.NumPyClient):
-    def __init__(
-        self,
-        client_id: int,
-        model: nn.Module,
-        trainloader: DataLoader,
-        testloader: DataLoader,
-        device: torch.device,
-    ):
-        self.client_id = client_id
+    def __init__(self, model: nn.Module, trainloader: DataLoader, testloader: DataLoader, device: torch.device):
         self.model = model
         self.trainloader = trainloader
         self.testloader = testloader
@@ -141,38 +129,18 @@ class FlowerClient(fl.client.NumPyClient):
         local_epochs = int(config.get("local_epochs", 1))
         lr = float(config.get("lr", 0.01))
 
-        last_loss = train_one_round(
-            self.model,
-            self.trainloader,
-            self.device,
-            local_epochs,
-            lr,
-        )
-
-        # Evaluate locally after training so the server can display per-client metrics
-        local_eval_loss, local_eval_acc = evaluate_model(
-            self.model,
-            self.testloader,
-            self.device,
-        )
-
+        last_loss = train_one_round(self.model, self.trainloader, self.device, local_epochs, lr)
         updated = get_parameters(self.model)
+
         num_examples = len(self.trainloader.dataset)
-
-        metrics = {
-            "client_id": self.client_id,
-            "train_loss_last": float(last_loss),
-            "local_eval_loss": float(local_eval_loss),
-            "local_eval_accuracy": float(local_eval_acc),
-        }
-
+        metrics = {"train_loss_last": last_loss}
         return updated, num_examples, metrics
 
     def evaluate(self, parameters, config):
         set_parameters(self.model, parameters)
         loss, acc = evaluate_model(self.model, self.testloader, self.device)
         num_examples = len(self.testloader.dataset)
-        return loss, num_examples, {"accuracy": float(acc)}
+        return loss, num_examples, {"accuracy": acc}
 
 
 def main() -> int:
@@ -203,13 +171,7 @@ def main() -> int:
     print(f"[client] device={device.type}")
     print(f"[client] server={args.server}")
 
-    client = FlowerClient(
-        client_id=args.client_id,
-        model=model,
-        trainloader=trainloader,
-        testloader=testloader,
-        device=device,
-    )
+    client = FlowerClient(model, trainloader, testloader, device)
 
     try:
         fl.client.start_numpy_client(server_address=args.server, client=client)
