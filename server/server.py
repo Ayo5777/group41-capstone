@@ -80,14 +80,13 @@ def parse_args():
 def fit_config(server_round):
     global ROUND_START_TIME
     ROUND_START_TIME = time.time()
-    return {"local_epochs": 2, "lr": 0.01}
+    return {"local_epochs": 1, "lr": 0.01}
 
 
 def main():
     args = parse_args()
 
-    time_stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    log_path = f"{args.test_name}_{time_stamp}.csv"
+    log_path = f"{args.test_name}.csv"
     server_address = "0.0.0.0:8080"
 
     print("Server Address: ", server_address)
