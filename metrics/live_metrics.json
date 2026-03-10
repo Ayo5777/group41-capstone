@@ -1,0 +1,187 @@
+{
+  "server": {
+    "status": "waiting"
+  },
+  "network": {
+    "latency_ms": 250,
+    "packet_loss_pct": 5,
+    "bandwidth_mbps": 50
+  },
+  "current": {
+    "round": 20,
+    "global_accuracy": 0.95,
+    "global_loss": 0.1814,
+    "round_time_s": 7.59,
+    "updates_received": 4,
+    "updates_expected": 5
+  },
+  "clients": [
+    {
+      "client_id": 1,
+      "status": "uploading",
+      "progress": 65,
+      "local_accuracy": 0.8544,
+      "local_loss": 0.3767,
+      "latency_ms": 299,
+      "packet_loss_pct": 5
+    },
+    {
+      "client_id": 2,
+      "status": "training",
+      "progress": 63,
+      "local_accuracy": 0.8468,
+      "local_loss": 0.4228,
+      "latency_ms": 363,
+      "packet_loss_pct": 5
+    },
+    {
+      "client_id": 3,
+      "status": "complete",
+      "progress": 61,
+      "local_accuracy": 0.8587,
+      "local_loss": 0.5575,
+      "latency_ms": 262,
+      "packet_loss_pct": 5
+    },
+    {
+      "client_id": 4,
+      "status": "complete",
+      "progress": 63,
+      "local_accuracy": 0.8708,
+      "local_loss": 0.3031,
+      "latency_ms": 330,
+      "packet_loss_pct": 5
+    },
+    {
+      "client_id": 5,
+      "status": "delayed",
+      "progress": 58,
+      "local_accuracy": 0.7498,
+      "local_loss": 0.5088,
+      "latency_ms": 346,
+      "packet_loss_pct": 5
+    }
+  ],
+  "history": [
+    {
+      "round": 1,
+      "global_accuracy": 0.6303,
+      "global_loss": 0.9881,
+      "round_time_s": 5.27
+    },
+    {
+      "round": 2,
+      "global_accuracy": 0.6448,
+      "global_loss": 0.9235,
+      "round_time_s": 9.79
+    },
+    {
+      "round": 3,
+      "global_accuracy": 0.6573,
+      "global_loss": 0.8912,
+      "round_time_s": 5.0
+    },
+    {
+      "round": 4,
+      "global_accuracy": 0.6774,
+      "global_loss": 0.8435,
+      "round_time_s": 7.23
+    },
+    {
+      "round": 5,
+      "global_accuracy": 0.6865,
+      "global_loss": 0.77,
+      "round_time_s": 5.19
+    },
+    {
+      "round": 6,
+      "global_accuracy": 0.72,
+      "global_loss": 0.7371,
+      "round_time_s": 7.38
+    },
+    {
+      "round": 7,
+      "global_accuracy": 0.7348,
+      "global_loss": 0.6969,
+      "round_time_s": 7.14
+    },
+    {
+      "round": 8,
+      "global_accuracy": 0.7524,
+      "global_loss": 0.6597,
+      "round_time_s": 3.99
+    },
+    {
+      "round": 9,
+      "global_accuracy": 0.7556,
+      "global_loss": 0.6201,
+      "round_time_s": 7.11
+    },
+    {
+      "round": 10,
+      "global_accuracy": 0.7786,
+      "global_loss": 0.5764,
+      "round_time_s": 4.95
+    },
+    {
+      "round": 11,
+      "global_accuracy": 0.7985,
+      "global_loss": 0.5742,
+      "round_time_s": 4.6
+    },
+    {
+      "round": 12,
+      "global_accuracy": 0.8218,
+      "global_loss": 0.5312,
+      "round_time_s": 7.96
+    },
+    {
+      "round": 13,
+      "global_accuracy": 0.8275,
+      "global_loss": 0.4645,
+      "round_time_s": 9.2
+    },
+    {
+      "round": 14,
+      "global_accuracy": 0.8475,
+      "global_loss": 0.4295,
+      "round_time_s": 8.18
+    },
+    {
+      "round": 15,
+      "global_accuracy": 0.8841,
+      "global_loss": 0.3718,
+      "round_time_s": 9.58
+    },
+    {
+      "round": 16,
+      "global_accuracy": 0.8839,
+      "global_loss": 0.3757,
+      "round_time_s": 7.37
+    },
+    {
+      "round": 17,
+      "global_accuracy": 0.9108,
+      "global_loss": 0.3247,
+      "round_time_s": 4.01
+    },
+    {
+      "round": 18,
+      "global_accuracy": 0.9147,
+      "global_loss": 0.3028,
+      "round_time_s": 3.62
+    },
+    {
+      "round": 19,
+      "global_accuracy": 0.9368,
+      "global_loss": 0.2314,
+      "round_time_s": 9.59
+    },
+    {
+      "round": 20,
+      "global_accuracy": 0.95,
+      "global_loss": 0.1814,
+      "round_time_s": 7.59
+    }
+  ]
+}
