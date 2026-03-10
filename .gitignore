@@ -9,4 +9,3 @@ venv/
 *.tar.gz
 .ipynb_checkpoints/
 results/*
-*.csv
